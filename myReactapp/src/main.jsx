@@ -10,7 +10,7 @@ import { UserProvider } from './context/userContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <GoogleOAuthProvider clientId='531916983718-pm93e2josvnrmd2jmqjqdcp4mbuulqrf.apps.googleusercontent.com'>
+      <GoogleOAuthProvider clientId='your api keys '>
         <UserProvider>
           <App />
         </UserProvider >
