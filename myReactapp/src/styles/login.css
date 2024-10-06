@@ -1,0 +1,41 @@
+/* Center the card and adjust styling */
+body {
+    background-color: #f7f8fc;
+}
+
+.card {
+    background-color: #1a1f36;
+    border-radius: 10px;
+    
+}
+
+.card h4 {
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+button {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+button.w-100.btn.btn-success {
+    background: #24786D;
+}
+.create {
+    background: #24786D;
+    color: #797C7B;
+}
+
+form label {
+    color: #aaa;
+}
+
+.bg-dark {
+    border: none!important;
+}

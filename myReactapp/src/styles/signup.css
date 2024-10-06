@@ -1,0 +1,48 @@
+.mt-5.p-3.chatroom-container.container {
+  width: 24rem;
+  border-radius: 20px;
+  background-color: rgb(26, 31, 54);
+  color: white;
+}
+
+.btn-custom-delete {
+  color: white;
+  background-color: #fd7e14;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: auto;
+}
+
+button.btn.btn-danger {
+  width: auto;
+  border: none;
+  border-radius: 10px;
+  background: #03a9f1;
+}
+
+.d-flex {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex-grow: 1; /* Ensures buttons take up equal space */
+}
+button.w-100.btn.btn-success {
+  background: #373e4e;
+  color: #ffff;
+  border: none;
+  border-radius: 10px;
+}
+
+.team-title {
+  color: #fbf6f6;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+}

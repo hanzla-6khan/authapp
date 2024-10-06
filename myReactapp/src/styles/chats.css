@@ -1,0 +1,84 @@
+.container.mt-5.p-3.chat-container {
+  width: 24rem;
+  border-radius: 20px;
+  background-color: rgb(26, 31, 54);
+  color: white;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.message.from .message-text {
+  background: #373e4e;
+
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  max-width: 70%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.message.to .message-text {
+  background: #272a35;
+
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  max-width: 70%;
+  text-align: right;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.message .text-muted {
+  margin-bottom: 5px;
+  font-size: 0.8em;
+}
+
+.message .message-text {
+  display: inline-block;
+}
+h6.text-white {
+  font-weight: 400;
+  font-size: 15px;
+  color: #ffffff;
+}
+.form-control {
+  background-color: #444444;
+  border: none;
+  color: white;
+}
+
+.form-control:focus {
+  background-color: #444444;
+  color: white;
+  box-shadow: none;
+}
+
+.input-group-append .btn {
+  background-color: #28a745;
+  border: none;
+}
+
+.input-group-append .btn .bi-send {
+  color: white;
+}
+
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #444444;
+}
