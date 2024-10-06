@@ -5,7 +5,7 @@ function create() {
   return (
       <div>
           <input type="text" name="" id="" />
-          <button type='button'>add</button>
+          <button type='button'>add buttons </button>
     </div>
   )
 }
