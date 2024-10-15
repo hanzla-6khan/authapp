@@ -1,0 +1,38 @@
+.bg-blue-dark {
+  background-color: #14284b;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.block-header {
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.expanding-grid .job-item {
+  align-items: center;
+  border-top: 1px solid hsla(227, 8%, 66%, 0.5);
+  display: flex;
+  height: 100%;
+  padding: 20px;
+  width: 50%;
+}
+
+.job-item .item-img {
+  margin-right: 15px;
+}
+
+.job-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.grid-list .list-item {
+  padding: 10px;
+}
+img.item-img {
+  width: 50px;
+  height: 50px;
+}

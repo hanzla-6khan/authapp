@@ -1,0 +1,11 @@
+.sidebar {
+  transition: all 0.3s ease;
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+}
+.toggled1 {
+  width: 0 !important;
+  overflow: hidden;
+}

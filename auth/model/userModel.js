@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const crypto = require("crypto");
 const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name is required"],
+      required: [true, "Name is required"],
       trim: true,
     },
     email: {
@@ -20,9 +20,16 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
+      required: function () {
+        // Make password required only if not logging in via Google
+        return !this.googleId;
+      },
     },
-
     isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isVerified: {
       type: Boolean,
       default: false,
     },
@@ -34,9 +41,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    verificationToken: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
+
 // Encrypt password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
@@ -54,22 +65,21 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 
 // Method to generate AccessToken
 userSchema.methods.generateAccessToken = async function () {
-  const token = await jwt.sign(
+  const token = jwt.sign(
     {
       _id: this._id,
       isVerified: this.isVerified,
       name: this.name,
       email: this.email,
       isAdmin: this.isAdmin,
-      address: this.address,
-      phone: this.phone,
       profile: this.profile,
     },
     process.env.TOKEN_SECRET_KEY,
     {
-      expiresIn: 60 * 60 * 24,
+      expiresIn: "24h", // Simplified time format
     }
   );
   return token;
 };
+
 module.exports = mongoose.model("User", userSchema);

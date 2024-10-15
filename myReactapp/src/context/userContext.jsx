@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 import avatar from "../assets/images/avatart.png"
 // Create the context
 export const UserContext = createContext();
