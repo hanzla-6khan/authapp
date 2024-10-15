@@ -7,12 +7,47 @@ import facebooklogo from '../assets/images/fb.png';
 import applelogo from '../assets/images/apple.png';
 
 
-// import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useGoogleLogin } from "@react-oauth/google"
+import { useState } from "react";
 import axios from "axios"
 const Login = () => {
-    const url = 'http://localhost:7096'
-    // const navigate = useNavigate();
+    const [formData, setFormdata] = useState({ email: "", password: "" })
+    const [error, setError] = useState('');
+
+
+    const url = import.meta.env.VITE_REACT_APP_API_URL;
+
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormdata({ ...formData, [name]: value }); // Ensure this is correctly updating the state
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!formData.email || !formData.password) {
+            setError("All fields are required");
+            return;
+        }
+        try {
+            const response = await axios.post(`${url}/login`, formData);
+            if (response.data.success) {
+                const token = response.data.token;
+                localStorage.setItem("token", token);
+                navigate("/dashbord");
+            } else {
+                setError(response.data.message || 'Login failed');
+            }
+        } catch (error) {
+            setError('An error occurred. Please try again.');
+            console.error(error);
+        }
+    };
+
+
     const getUserDetails = async (accessToken) => {
         const response = await fetch(
             `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`
@@ -43,9 +78,11 @@ const Login = () => {
                     const token = response.data.token;
                     console.log(token);
                     localStorage.setItem("token", token)
+                    localStorage.setItem("userName", userObject.name)
+                    localStorage.setItem("userProfile", userObject.profile);
                     // login(token);
                     // toast.success(response.data.message);
-                    // navigate("/");
+                    navigate("/dashboard");
                 } else {
                     // console.log(error);
                     // toast.error(response.data.message);
@@ -66,7 +103,7 @@ const Login = () => {
 
                 {/* Social Login Buttons */}
                 <div className="d-flex justify-content-center gap-3 mb-3">
-                    <div onClick={handleLogin}>
+                    <div >
                         <img
                             src={facebooklogo}
                             alt="Google"
@@ -80,7 +117,7 @@ const Login = () => {
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
                     </div>
-                    <div onClick={handleLogin}>
+                    <div >
                         <img
                             src={applelogo}
                             alt="Google"
@@ -98,16 +135,18 @@ const Login = () => {
                 </div>
 
                 {/* Email/Password Form */}
-                <Form>
+                <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Your email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" className="bg-dark text-white" />
+                        <Form.Control type="email" placeholder="Enter email" className="bg-dark text-white" name='email' value={formData.email} onChange={handleChange} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" className="bg-dark text-white" />
+                        <Form.Control type="password" placeholder="Password" className="bg-dark text-white" name='password' value={formData.password} onChange={handleChange} />
                     </Form.Group>
+                    {error && <div className="text-danger mb-3">{error}</div>} {/* Display error message */}
+
 
                     <Button variant="success" type="submit" className="w-100">
                         Log in
