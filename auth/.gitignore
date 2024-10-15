@@ -4,6 +4,4 @@
 # Ignore node_modules
 node_modules/
 
-# Ignore other sensitive or unnecessary files
-dist/
-.DS_Store
+
